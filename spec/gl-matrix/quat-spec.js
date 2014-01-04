@@ -115,6 +115,20 @@ describe("quat", function() {
         });
     });
 
+    describe("rotate", function() {
+        var axis;
+        beforeEach(function(){
+            axis = [0.707106,0.707106,0];
+            result = quat.rotate(out, id, 2*deg90, axis);
+        });
+
+        it("should return out", function() { expect(result).toBe(out); });
+        it("should transform vec accordingly", function(){
+            vec3.transformQuat(vec, [1,0,0], out);
+            expect(vec).toBeEqualish([0,1,0]);
+        });
+    });
+
     describe("fromMat3", function() {
         var matr;
 
